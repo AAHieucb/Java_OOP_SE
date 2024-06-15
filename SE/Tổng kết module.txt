@@ -1,0 +1,330 @@
+SE: Slide và txt
+
+
+# Basic
+-> Process step trong SE:
+Đúng thứ tự 7 bước: feasibility -> (phân tích requirement -> thiết kế giao diện -> thiết kế hệ thống -> code) lặp nhiều lần -> test và release -> bảo trì
+
+
+
+# ITSS
+
+
+
+# Software development process:
+
+
+
+# Heavyweight and Lightweight software dev:
+-> Heavyweight:
+VD như waterfall dùng heavyweight process, làm xong sẽ k cần nhìn lại cái cũ. Slow process, chỉ release ở cuối, client k tham gia cùng, chỉ theo plan từ đầu
+
+-> Lightweight:
+Chỉ final system được documented. Speedy process, release liên tục trong quá trình, client gắn bỏ cùng, ok với sự thay đổi.
+
+
+
+# Feasibility:
+Risk: cần nhiều kinh nghiêm, client k rõ về quy mô, thay đổi nhiều hay ít, vđ về ngân sách,.. Có external risk và technical risk
+Các lỗi thg gặp: mù mờ về scope, k mô tả activities đủ chi tiết để đánh giá lượng lao động, chưa nói rõ quản lý dự án như nào.
+
+
+
+# Project Management:
+Để biết được tiến trình hiện tại dự án làm đến đâu rồi mọi lúc mọi nơi. 
+Client và dev plan trong mỗi timebox cần làm những gì
+
+-> Activity Graph
+
+-> Tool
+--> Gantt Charts: chiều dọc theo sắp xếp theo thứ tự ưu tiên các task
+Gantt Chart là 1 phương pháp lập danh mục công việc cần làm theo thứ tự của kế hoạch có ghi rõ ai làm và thời gian thực hiện, để quản trị tiến độ thực hiện dự án. Nó là bảng chia thời gian và công việc để quản lý thời gian thực hiện từng công việc chia ra để làm dài ngày. Nó chỉ phù hợp với các dự án quy mô nhỏ khi mà có thể thấy rõ thời gian thực hiện nhưng k rõ quy trình công nghệ cũng như mối quan hệ giữa các công tác. Có tool chuyên vẽ cái này
+Load Chart còn là mở rộng của Gantt Chart sẽ liệt kê thêm nhân lực thực hiện công việc, các nguồn khác như dụng cụ máy móc,..
+
+--> Critical Path Method: như acitivity graph nhưng ước lượng thời gian ES EF LF LS
+Viết activity diagram -> thêm duration -> tính slacktime -> tính ES EF LF LS trên critical path -> tính ES EF LF LS trên các node con
+
+-> Deliverable: release of work product cung cho client
+-> Milestone: hoàn thành 1 cụm step tạo chức năng, kết thúc 1 sprint
+
+
+
+# Requirement analysis:
+Requirement là những tính năng của hệ thống dưới góc nhìn của client. Phân tích client muốn gì
+Requirement cần phải: mô tả được UI, đồng ý về các điều kiện, developer phải hiểu được yêu cầu của ứng dụng, ước lượng giá cả và thời gian thực hiện, xây dựng kế hoạch về kỹ thuật của các iteration, xác định được các hướng vẽ UML cho đúng nx
+
+Những giả định về design cần tránh nhất có thể để nó k chi phối requirement của client.
+
+-> Step: 
+Feasibility study -> Requirement analysis[Analysis -> Modeling -> Define]
+Bước modeling có rất nhiều loại model để dùng
+
+-> Model:
+Model là cầu nối giữa dev và ý định của client. Build model giúp ta hiểu hơn về system. 
+--> Table đặc tả usecase(ảnh chụp), Usecase diagram, Data Flow Diagram, Decision Table Model, Flowchart, Transition Diagram, Entity relational model, Relational database
+
+-> Phân biệt:
+Heavy weight process cần develop detailed specification luôn
+Light weight process cần develop requirement 1 sprint 1 lần
+Middle weight process cần develop requirement iteratively, tạo 1 main requirement và add details từ từ.
+
+
+
+# Design(Program)
+Thiết kế giao diện cũng như các model áp dụng để tạo lớp tương tác với người dùng, đường đi của logic như làm gì thì bắn ra giao diện cái gì
+
+-> UX:
+User experience là mọi yếu tố ảnh hưởng đến vc sử dụng hệ thống của người dùng
+
+--> Prototype: Paper prototype(Sketches), wireframe(online layout), mock-up(đồ họa thô sơ có màu, layout chi tiết), operational prototype(có control để tương tác và navigate)
+
+-> Mental Model và Computer Model
+
+--> Mental model là user view
+
+--> Computer model là các chức năng logic, dữ liệu mà system cung cấp. 
+=> Cả 2 đều có các layers: interface, nav bar, data, network, system. VD mô hình MVC là computer model với 5 layer trên. Mô hình này đc dùng rộng rãi trong các hệ thống tương tác.
+---> MVC:
+Model cung các hàm của chương trình xử lý logic, thao tác với file, các loại metadata, audio, text, content,... Nó như dữ liệu thô kiểu giao diện ta nhìn ra ngoài là bàn cờ vua thì bên trong ứng dụng đó, model của nó là cái bảng thô lưu trữ vị trí di chuyển các quân cờ nhìn rất rối. Model record state of app, có thể lo cả validation. Thực tế validation nên để ở controller hơn.
+Controller sẽ quản lý flow của ứng dụng bằng cách quản lý các phương tiện hiển thị rằng gán data nào vào  cục hiển thị nào, gọi interface function tương tác giữa model và UI(chỉ gọi chứ k xử lý logic phức tạp của hàm), interact with external APIs.
+View hiển thị data trên 1 giao diện, nó phải được thiết kế đẹp có control, graphical elements, input.
+
+-> Interaction diagram, Sequence diagram, Class diagram, Object Diagram, Design UI/UX(figma,..)
+
+
+
+# System Design:
+Có nhiều thứ cần lo như computer network, interface protocol, security, database,... Phần lõi tương tác như nào, API như nào
+
+-> Deployment Diagram, Component Diagram(Interface diagram), các Architectural style
+
+-> Subsystem:
+Coupling là đo độ liên kết giữa các subsystem với nhau. VD 2 system coupling cao khi modify cái này thì rất dễ phải modify cái khác.
+Cohesion là đo sự liên kết bên trong 1 subsystem. VD 1 system có chứa nhiều hàm có quan hệ với nhau thì cohesion nó cao
+=> Người ta khuyên rằng khi chia 1 system complex ra nhiều subsys nhỏ thì nên có low coupling và high cohesion là tốt nhất.
+
+-> Component:
+Component thực thi 1 interface nào đó và là 1 replacable item trong system, 1 phần của system. 1 object implement interface luôn là 1 replacable item nên khả năng tái sử dụng cao. Nếu ta muốn hệ thống hoạt động với 1 object implements khác thì chỉ cần xóa cái object hiện có, thay thế nó bằng 1 object khác cũng implements cái interface đó là mọi thứ tự chạy ngon, miễn tuân thủ interface.
+3 loại components: deployment components(.dll), work product components(file bth), execution components(.obj, .class)
+Component ở đây khác với class trong system design vì components chỉ được gọi thông qua interface nó implements
+
+--> package: là thứ sắp xếp các elements liên quan nhau vào cùng 1 group
+--> node: là physical element tồn tại trong thời gian chạy cung tài nguyên như máy tính, điện thoại, router. Nó chứa component.
+
+
+
+### Các loại graph, diagram ###
+Các loại biểu đồ này dùng cho 3 loại: system design(kiến trúc của hệ thống), program design(design pattern trong chương trình) và requirement modeling(biểu diễn requirement của client dưới dạng model để dev hiểu).
+
+Các loại như flowchart, finite state machine, ERD kiểu tổng quan đường đi được support bởi UML thg dùng cho requirement modeling. Còn các kieu class hay object model thg dùng cho program design.
+
+
+
+## Project Management ##
+Nó được xây từ trước khi mn bắt đầu code chính. Nó nằm ở bước lên kế hoạch, xác định cái gì cần làm trong các sprint, bắt đầu từ cj làm tiếp cái gì cho đến đích
+
+Activity diagram chỉ cần nhớ: ô chữ nhật, ô tròn, nét liền và nét đứt(dummy activity - dependency)
+
+--> Activity Graph: kế hoạch các bước phải làm để đi từ đầu đến đích.
+---> Time Estimates for Activity Graph: thay bằng thông số time cho các đường
+---> Precedency diagram: giống activity diagram gốc
+---> Critical Path Method: mô tả thời gian chi tiết hơn
+Khắc phục nhược điểm của Activity Graph do k xem được time
+Xác định critical path và tính toán các thông số từng node. Critical path kp là path dài nhất mà là path có time lâu nhất
+
+
+
+## Model for requirements ##
+--> Data Flow Diagram: 
+Biểu diễn luồng thông tin trong system. Nơi chúng ta chưa code mà chỉ phân tích requirement thì cần có 1 cái model để giúp dev và client hiểu ý nhau thì DFDs là 1 cách để biểu diễn ý ra.
+Processes: rounded rectangle -> hành động của system xử lý data
+Data flows: named arrows -> data input to and output from. Có thể k có tên nếu đường đi thuần k có chú thích gì. Vd: quyết định của system accept hay reject chẳng hạn
+External entities: circle -> source và des of info
+Data stores: hcn -> nơi thông tin lưu trong system
+
+--> Decision Table Model: Chú ý biểu diễn hàng và cột chuẩn để nd table chỉ cần tích X vào
+
+--> Flowchart model: xác định logic path và path mà data đi trong system.
+Có 4 hình và 2 loại path (có label và k có label)
+Manual operation là kiểu operation thực hiện thủ công, operation hcn là operation hệ thống thực hiện. Còn có thêm hình tròn ở cuối báo hiệu kết thúc.
+
+--> Transition Diagram: sự đổi trạng thái của hệ thống
+---> Finite state machine: thêm điểm bắt đầu và kết thúc hình tròn. 
+Nó có chia TH node tõe nhiều nhánh là nh hành động hay handle error được luôn. VD ấn cancel thì quay về trạng thái cancel, k cần chi tiết đến độ báo cho người dùng đâu vì nó kp là 1 state mới. Trong diagram chi có 1 state start và 1 state kết thúc
+Trong dự án thực tế, ta chọn finite state machine hay flowchart tùy TH để biểu diễn hành động của hệ thống, chọn cái nào phù hợp biểu diễn dễ hơn vì 2 cái khá tương tự nhau. State machine nó là state của 1 object từ lúc tạo cho đến lúc k dùng nx, mỗi state là 1 trạng thái của object sau khi thực hiện xong 1 hành động, kể cả có nhiều action như nào thì nó cũng chỉ quan tâm nếu action đó làm state của object thay đổi hay k mới biểu diễn ra. Flowchart nó biểu diễn luồng đi logic làm cái này, else thì làm cái này, nó k tốt nếu như làm nhiều cái 1 lúc mà kiểu 1 luồng đi của data, 1 ĐK mà có thể đi vào nhiều TH khác làm nhiều thứ
+=> Sở dĩ vc dùng nhiều loại diagram là vì nhiều TH cần dùng khác nhau. Có thể gom nhiều usecase có quan hệ(cùng change state 1 object hay 1 luồng điều kiện if else) vào 1 diagram nếu được. Thông thường điều này khó thực hiện và mỗi usecase nó dùng 1 diagram luôn nên đặc tả dự án thg phình to ra.
+Với TH 1 usecase 1 diagram thì ng ta có thể dùng table đặc tả để bd usecase đó.
+
+--> Entity relational model: là bắt buộc cần thiết cho relational database
+--> Relational database: là cái trên được chuyển thành dạng bảng có quan hệ tương tự
+
+
+
+## Sytem Design ## 
+Trước khi code
+--> Deployment Diagram: 
+Mô hình hóa mặt vật lý của hệ thống hướng đối tượng. Deployment biểu diễn nhiều loại chứa nhiều thứ như: package, node, component, các object khác như file hoặc thiết bị lạ,...
+Nó chỉ mô hình quá trình deploy sản phẩm cuối như client/server có thiết bị vật lý như nào dùng
+
+Để vẽ chỉ cần quan tâm các component là thứ nằm trong các node. Mỗi node là 1 thiết bị vật lý như server or PersonalComputer. Relationship giữa các components chỉ cần quan tâm mũi tên nét đứt cho kiểu client/server. 
+Nét liền với các kiểu khác ít dùng.
+
+---> Model embedded system
+---> Model client/server system
+---> Model fully distributed systems
+
+--> Component Diagram(interface diagram):
+1 trong 2 loại diagram mô hình hóa mặt vật lý của hệ thống OO.
+Nó gồm 3 thành phần là components, interface(hình tròn nhỏ), các đường relationship có dependency(đứt mũi tên), realization(liền k mũi tên), composition(như class diagram),... Các cái khác phần lớn ta k cần quan tâm, còn composition chỉ dùng trong biểu diễn physical database.
+Nó biểu diễn API từ file or component, client/server tương tác qua interface, biểu diễn interface cung ra từ 1 component, physical database,..
+
+Interface là tập hợp operation dùng cho service lấy từ class or a component. 
+Các component đều tương tác với nhau thông qua interface trong component diagram khi model API
+VD: A ----> (interface HTTP) ______ B thì ---> là dependency và _____ là realization khi component A tương tác với component B thông qua interface HTTP.
+VD: component B có 2 method GET, POST cung ra ngoài sử dụng thì dùng B realization đến 2 interface GET, POST
+
+--> Architectural style: 
+Architecture style là 1 phần của system design, nó xđ dưới dạng subsystem, components, deployment. Khác với design pattern là 1 phần của program design, nó xđ dưới dạng class.
+
+Architecture kp là 1 loại bảng mới mà là các cách thiết kế hệ thống phổ biến. Nó dùng các loại bảng cũ và cũng có 1 số cách vẽ riêng nên ta lầm tưởng nó là 1 loại bảng mới. Ta phải dựa vào nó để vẽ với các loại diagram của system.
+
+---> Dạng cơ bản UML diagram for architectural style:
+Pipe: A --> B --> C
+Client/Server: A --> IB ____ B
+Repository: Input --> Repo <-- Transaction
+Repository with Storage Access Layer: Nhiều component cùng tương tác với data store nhưng thông qua 1 storage access layer.
+DB có thể đổi miễn cung ra API access layer k đổi thì các thành phần tương tác với nó k phải đổi
+
+--> Three Tier Architecture:
+Client --> InterfaceA ___ Application tier --> InterfaceB ___ Database
+                                 |
+                                 |
+                                 v
+                          External services
+Trong từng component lại mở rộng được có nhiều packakge, trong package lại có nhiều class
+Trong từng ứng dụng khác nhau dùng architecture style này mà vẽ có thể khác đi.
+
+Tier > Layer. VD: MVC là layer, app trong environment như web browser hay web server là tier. Tier nó tượng trưng cho cả 2 server side hay client side. VD: ứng dụng Liên hệ trong máy điện thoại dùng MVC là 3 layer app. Nhưng lại là single tier app vì cả 3 layer đều chạy trên 1 máy điện thoại.
+
+=> 3 tier riêng là 3 máy riêng
+
+--> Master File Update:
+Khi ta update 1 file, thông tin cần thay đổi được lưu vào file. File được update gọi là master file. Các action thêm, sửa, xóa được dùng để thay đổi trên master file được lưu trong transaction file. Process file đó với master file để update master file. Có thể update vì mục đích bảo trì or update thông tin khi dùng trên sản phẩm thực tế.
+Ở đây ta k qt nó vẽ như nào lằng nhằng.
+
+---> Master File with Batching Proccessing: 
+Nó k update ngay mà với batch processing thì nó ghi mọi thứ vào transaction file và thg là về đêm vắng khách sẽ chạy file này để update mọi file trong hệ thống. Mặc định chỉ được xem nhưng nếu có request thay đổi thì chạy vào input and validation process. Vc update liên tục có thể gây ra nhiều vấn đề khi data được update 1 lưu lượng quá lớn. Cái này nó update 1 cục vào đêm thôi.
+Các DBMS là 1 dạng dùng Master File Update
+
+--> MVC architecture:
+Mô hình MVC có thể dùng cho cả program design và system architecture
+
+Bth thì view-controller-model tương tác trực tiếp với nhau và cả cục tương tác với external services. Nhưng kp lúc nào cũng v VD web browser thì View k tương tác trực tiếp với model
+
+
+
+## Program design ##
+--> Interaction diagram: Quan hệ thứ tự đi của message theo thời gian. Xây trước sequence diagram.
+
+--> Sequence diagram:
+Có mấy cái relationship như call, return, send, create, destroy.
+Ta dùng :A để biểu thị cho instance class A trong diagram => k nhất thiết phải dùng instance
+Nó biểu diễn luồng lần lượt trước sau theo thời gian cột dọc. Request cái gì nhận được response cái gì
+Có thể dùng alt biểu diễn if else nếu thấy ngắn quá. Mỗi 1 đường kẻ là 1 hành động tác động vào actor nối sau nó, đủ chi tiết để mô tả các hành động vừa phải như nhập input, A--action-->B thì action tác động vào B nhưng có thể k được gây ra directly bởi A
+Nên nhớ éo phải lúc nào request ___> cũng cần có response <-- vì ___> cũng biểu diễn notify báo hay 1 lệnh gọi call bth hay hiển thị cho người dùng. Nếu k thực sự là trả ra response cho đúng cái request đang gọi thì k cần dùng <--
+Sequence diagram k cần thiết phải vẽ hết các đường kẻ mới được mà nếu 1 hành động buộc thực hiện xong r trả về kết quả thì hành động sau mới làm tiếp theo trình tự thời gian thì ta mới phải làm v tức khi nét đứt buộc hoàn thành trước nét liền. Nếu k có thể k cần vẽ đường nét đứt trả về kết quả nếu k bắt buộc theo thứ tự hoặc k qtr trong dự án
+
+--> Object Diagram:
+Là loại diagram có tính chất như class diagram nhưng dùng dấu : để biểu thị object chứ kp là 1 class. Trong slide cx k nói rõ điều này
+
+
+
+# Test
+3 loại Test chung: User Testing(UI), Program Testing(logic như unit test và system test), Acceptance Testing(client test final version)
+Vc test phải test cả requirement, giao diện và system design bên trong chứ k chỉ chức năng.
+
+-> Đúng thứ tự test từ trên xuống:
+--> Unit test: 1 module 1 lúc
+
+--> Integration test: linking module
+Bottom-up Approach: test theo thứ tự module nhỏ đến lớn dần của cây, test các module song song
+Top-down Approach: test từ trên xuống của cây module
+Bigbang test: mọi module xong thì gom mọi unit test vào và test hết cùng lúc luôn
+Sandwich test: lower level thì test dưới lên, higher level module thì test trên xuống
+Regression testing: test lại app sau khi sửa code để đảm bảo các tính năng khác k sinh bug khi sửa tính năng này.
+
+--> System test: whole system
+
+--> Acceptance test: user point of view
+Acceptance Testing là kiểm thử chấp nhận xem ngươi dùng có hài lòng thỏa mãn requirement bằng data thực tế
+
+Test case: các điều kiện để test xem system có cho kết quả như ý ở TH test đó k
+Test suite: tập hợp nhiều testcase
+Test plan: là documents mô tả phương pháp test, rủi ro, phạm vi và các tool dùng test
+
+-> Blackbox: choose input mà kb trước hệ thống hoạt động như nào
+--> Equivalence Partitioning: chia input space thành từng nhóm tương đương nhau
+--> Boundary Analysis: test với 2 điểm đầu cuối của input space
+--> Table Decision: quan hệ giữa các conditions, tạo ra các TH kết hợp các complex conditions lại
+
+-> Whitebox: choose input khi đã biết cơ chế hoạt động của hệ thống
+--> Control Flow Testing: Có nhiều path(theo luồng logic) và select các path mong muốn để test theo
+VD: Nếu ta có 10 điều kiện if else lồng nhau thì có đến 2^10 testcase mới đủ hết path. Đôi lúc ta k thể cover hết được mọi case và các PP này sẽ giúp ta chọn path như nào
+
+---> All path coverage: Design mọi possible testcase để mọi path được exec
+---> Statement coverage: Mỗi source statement(path) executed ít nhất 1 lần
+---> Branch coverage: Số lượng path rất lớn nên sinh ra nhiều cách chọn path, cần đảm bảo mỗi nhánh của Flow Control Graph xuất hiện trong ít nhất 1 path
+
+--> Data Flow Testing: chọn path theo control flow testing nhưng quan sát sự biến đổi giá trị của data có đúng logic không.
+--> Predicate-based testing: đảm bảo các điều kiện boolean là đúng
+
+
+
+### Bổ sung slide cuối OOP
+
+
+
+# Other:
+-> Creately nền tảng cho vẽ mọi thứ, kể cả CPM
+Wireframe là thiết kế thô k cần màu sắc mà chia bố cục cái gì nằm ở đâu trên trang web. Có nhiều tool thiết kế wireframe bao gồm cả Illustrator, figma cũng dùng nhưng nó rất mạnh và chi tiết hơn.
+
+-> Tổng quan:
+Process của SE: 7 bước lớn
+Software development process: Waterfall, Iterative Refinement(5 cách review planned system), Spiral(biến thể Iterative), Agile/Scum, Incremental
+Feasibility
+Project Management: 2 PP Gantt Chart CriticalPathMethod; Activity Diagram; 
+Requirement Analysis: Table đặc tả usecase(ảnh chụp), Usecase diagram, Data Flow Diagram, Decision Table Model, Flowchart, Transition Diagram, Entity relational model, Relational database
+Program Design: Interaction diagram, Sequence diagram, Design UI/UX, Class diagram, Object Diagram
+System Design: Deployment Diagram, Component Diagram(Interface diagram), các Architectural style
+Test: 4 kiểu test theo thứ tự, 2 PP test
+
+=> Đa phần mọi loại biểu đồ đều thuộc requirement. Các cái kiểu đường đi lại như sequence và interaction là của program design. Còn deployment và component nó liên quan đến các phần cứng của hệ thống thì là system design. Chỉ cần nhớ class của program design vì nó thiết kế sâu về phần ta phải code như thế nào, còn usecase thì k, usecase chỉ bảo là actor nào tương tác với hệ thống như thế nào nên nó thuộc về phân tích requirement của đề bài hơn
+
+Ngoài ra còn có package diagram cùng 1 nhóm với Class diagram trong program design, cái này dùng trong lập trình hướng đối tượng
+
+
+
+Ôn phỏng vấn:
+# Ôn lại MVC:
+=> ref tới "Java_OOP_SE / SE / Project EcoBike JavaFx"
+Model cung các hàm của chương trình xử lý logic, thao tác với file, các loại metadata, audio, text, content,... Nó như dữ liệu thô kiểu giao diện ta nhìn ra ngoài là bàn cờ vua thì bên trong ứng dụng đó, model của nó là cái bảng thô lưu trữ vị trí di chuyển các quân cờ nhìn rất rối. Model record state of app, có thể lo cả validation. Thực tế validation nên để ở controller hơn.
+Controller sẽ quản lý flow của ứng dụng bằng cách quản lý các phương tiện hiển thị rằng gán data nào vào  cục hiển thị nào, gọi interface function tương tác giữa model và UI(chỉ gọi chứ k xử lý logic phức tạp của hàm), interact with external APIs.
+View hiển thị data trên 1 giao diện, nó phải được thiết kế đẹp có control, graphical elements, input.
+
+-> MVC architecture:
+Mô hình MVC có thể dùng cho cả program design và system architecture
+
+Bth thì view-controller-model tương tác trực tiếp với nhau và cả cục tương tác với external services. Nhưng kp lúc nào cũng v VD web browser thì View k tương tác trực tiếp với model
+
+Kiến trúc MVC: Mô hình quản lý dữ liệu Model-View-Controller cho phép ta thao tác với dữ liệu và hiển thị nó 1 cách trực tiêp có lợi hơn rất nhiều so với mô hình item-base nếu ta muôn hiển thị 1 lượng dữ liệu lớn cũng như thao tác bên trong.
+Trong nhiều TH controller đc đính kèm với View, ta thao tác đổi dữ liệu vs 1 view thì dữ liệu sẽ bị đổi và hiển thị ngay ở các view khác đc kết nỗi với cùng model.
+
+Với các thứ phức tạp, nó sẽ dùng MVC và cơ chế tương tự như Flux và React Native. Trong Flux: tác động vào view, phát ra 1 action-> gửi đến dispatcher-> dispatcher xử lý tùy theo action đó là gì gửi cho store lưu cái đó-> store cập nhập lại view. Nhưng qml hơi khác đi 1 chút khi dispatcher nó k xử lý mà chỉ phân phối đúng cho cái store nào xử lý nó và lưu nó lại.
+(Trong QML: sử dụng MVC với các thẻ ví dụ như Page chính là cả view và controller, ta phải làm vc đó)
+
+Mô hình MVC trong nodejs MERN stack:
+M: Thư mục model chứa model là các khuôn mẫu của dữ liệu để tạo ra dữ liệu chuẩn trong mongoose
+C: Thư mục controller chứa các thứ thao tác với từng router
+V: Thư mục router là thứ mà view kiểu url nào thì chạy middleware gì và controller gì mà k có xử lý logic nữa
+
+
