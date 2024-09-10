@@ -1,17 +1,21 @@
-Java:
+Java
 
 
-#Basic:
+
+# Thread.sleep(0)
+
+
+
+
+# Basic
 -> Eclipse: 
 Có nhiều workspace và trong 1 workspace có nhiều project, trong project có nhiều package, trong package có nhiều file class. Để đổi workspace: file -> switch workspace.
 
 -> Package:
-là thứ gồm nhiều lớp. Mỗi 1 lớp dùng trong 1 lớp khác thì nó nên có keyword package ở đầu file và file cần dùng thì cần ngăn cách với dấu chấm.
+là thứ gồm nhiều lớp. Mỗi 1 lớp dùng trong 1 lớp khác thì nó nên có keyword package ở đầu file.
 Vd: package oolt.hedspi;
 
 -> Biến và type:
-Tên biến k được bắt đầu bằng số
-
 1 vài convention đặt tên:
 Hằng số: THE_EXAMPLE
 Method/variable: theExample
@@ -30,75 +34,57 @@ hexa bắt đầu bằng 0x. VD: 0x1A or 0x1a như nhau vì literal trong Java k
 26L là long, 2f or 2F là float or 2D là double => floating point k ký tự mặc định cx là double
 7.1e2 là scientific representation
 
-Các hàm của class có sẵn Collections, Arrays, System
-
--> Lỗi:
-int a; System.out.println(a); => sai ngay vì java có quy tắc là variable phải khởi tạo giá trị r mới được dùng trong các expression
-
-Trong C++ mảng 3 phần tử mà ta truy cập phần tử thứ 4 sẽ hiển thị giá trị rác(k sửa đổi thì k có lỗi)
-Trong Java mảng 3 phần tử mà làm bất cứ thứ gì thay đổi với phần tử thứ 4 nó sẽ báo lỗi ngay kể cả vc read -> kiểm lỗi và tính chặt chẽ ok hơn
-
--> Comment:
-/**Javadoc* comments dưới dạng javadoc*/
+-> /**Javadoc* comments dưới dạng javadoc*/
 
 -> Other:
 Về Locale NumberFormat chú ý là ở VN ngăn cách phần nghìn với phần trăm bằng dấu chấm còn số thập phân dùng dấu phẩy còn ở Mỹ ngược lại.
-
-Các cách swap 2 biến
-BiFunction
-Overloading (...params) function trong java
-label for loop
 
 @SuppressWarnings("null") VD khi ta in ra 1 string mà có tiềm năng là null sẽ báo warning, dùng cái này sẽ cản warning
 
 Switch case phải có default. Ta k thể thao tác với 1 biến khi tạo ra nó mà k gán giá trị ban đầu cho nó. Nên nếu ta tạo ra 1 biến k có giá trị ban đầu mà chỉ gán nó trong switch case mà k có default thì trình biên dịch tự báo lỗi rằng biến có TH k khai báo mà sử dụng có thể crash Ct
 
-Trong java cũng có các type cực cơ bản như vector. Tính chất của nó là size tự co dãn khi thao tác
+int a; System.out.println(a); => sai ngay vì java có quy tắc là variable phải khởi tạo giá trị r mới được dùng trong các expression
 
-3 cách khởi tạo mảng giá trị(thuần chú k dùng collection)
+Trong C++ mảng 3 phần tử mà ta truy cập phần tử thứ 4 sẽ hiển thị giá trị rác(k sửa đổi thì k có lỗi)
+Trong Java mảng 3 phần tử mà làm bất cứ thứ gì thay đổi với phần tử thứ 4 nó sẽ báo lỗi ngay kể cả vc read -> kiểm lỗi và tính chặt chẽ ok hơn
 
 -> Input scanner:
 scanner nhận đối số System.in thì sẽ xử lý input vì System.in là chuẩn đầu vào java, còn System.out là chuẩn đầu ra, còn System.err dùng báo lỗi
 
--> Show dialog input, output
--> Math lib
--> Format number
--> Enum
--> template wildcard
 
 
-
-# IMPORTANT:
--> Casting:
+#***Casting trong lập trình
 Trong các ngôn ngữ k chỉ java, về mảng casting phải nhớ, phần mềm thông thường sẽ tự cast data từ nhỏ sang lớn nhưng từ lớn sang nhỏ ta phải explicit. 
 VD: double f; long g; f = g; g = f; => sai ngay vì float k cast sang kiểu nhỏ hơn là long được. Từ lớn sang nhỏ nó cắt phần thừa nên nếu dùng đến các byte thừa thì sẽ mất dữ liệu khi cast. Cơ chế của nó thực ra là hệ thống tự ép kiểu nếu dữ liệu k bị mất, còn bị mất thì phải có xác nhận của user nên nó mới chỉ tự cast từ nhỏ đến lớn như v. 
 => Chú ý mặc dù float 4 bytes, double 8bytes, long 8 bytes nhưng ta vẫn coi float và double lớn hơn long
-VD: float f = 12.5; => sai ngay vì mặc định k có chữ F ở sau thì nó vẫn mặc định là double => dùng parseFloat chủ động. Tương tự với số nguyên mặc định cũng là int
+VD: float f = 12.5; => sai ngay vì mặc định k có chữ F ở sau thì nó vẫn mặc định là double và k cast nhỏ hơn sang float được => dùng parseFloat chủ động.
+VD: short a = 10; => k lỗi, vì 10 trong phạm vi của short, nó thoải mái hơn với int
 
--> Bản chất truyền params vào hàm là tham chiếu hay giá trị thì như C++:
+
+
+#***Bản chất reference trong ngôn ngữ hiện đại
+Bản chất truyền params vào hàm là tham chiếu hay giá trị thì như C++
 Nếu ta dùng func(int a) thì bên trong gán a = 10 thì bên ngoài k đổi nhưng dùng func(MyDate a) thì bên trong gán a.setDay(10) thì bên ngoài có đổi.
 VD: void func(MyDate dvd1, MyDate dvd2); int x1=10; int x2=20; MyDate d1,d2 khởi tạo new; func(d1,d2);
 Stack: x1=10, x2=20, d1, d2, dvd1, dvd2
 Heap: new MyDate1 -> day,month,year và new MyDate2-> day,month,year
-Trong đó d1 và dvd1 cùng trỏ tới MyDate1, d2 và dvd2 cùng trỏ tới MyDate2
-=> Thế này là ta đủ hiểu ví dụ thử swap như dvd1=dvd2 thì dvd1 sẽ trỏ tới MyDate2 chứ giá trị ô nhớ MyDate1 không đổi tức d1 bên ngoài k đổi
-=> Nhưng nếu gán dvd1.setDay(20) tức đổi giá trị vùng nhớ MyDate1 sẽ ảnh hưởng d1 bên ngoài => tức là biến trỏ tới trong stack thì copy nhưng biến đó vẫn trỏ đến đúng địa chỉ bên ngoài và giá trị chỉ ảnh hưởng ra bên ngoài khi ta thay đổi giá trị của ô nhớ bằng cách gọi hàm của Object như v. Do đó TH swap thì bên ngoài k đổi nhưng setDelay thì bên ngoài lại đổi làm ta tưởng nhầm tham chiếu hay copy. 
-TH biến primitive int thì tương tự VD bên trong cho a = 10 thì nó trỏ đến 1 vùng nhớ hằng khác chứ giá trị vùng nhớ ban đầu k đổi. Chính vì biến primitive éo có hàm nào để thay đổi trực tiếp giá trị vùng nhớ của nó khi truyền vào hàm mà trong java thay đổi hằng số chỉ là trỏ biến đến 1 ô nhớ khác trong global constant pool nên biến primitive kbh ảnh hưởng ra bên ngoài
-Tương tự truyền mảng vào thì gán a[0]=1 là đang đổi giá trị ô nhớ đó nên ảnh hưởng ra ngoài
-Wrapper Class cũng giống như primitive type ở Th này. Interger cũng như int đều là giá trị pass vào vì cùng trỏ đến vùng nhớ hằng => Sai, phải hiểu là cái này nó như reference type nhưng k có hàm nào thay đổi giá trị bộ nhớ của nó mà chỉ refer đến vùng nhớ khác nên luôn luôn là copy. Kiểu func(Integer a) thì a là copy của biến truyền vào cùng trỏ đến vùng nhớ hằng. Tất cả chỉ cùng 1 cơ chế.
+Trong đó d1 và dvd1 cùng trỏ tới MyDate1, d2 và dvd2 cùng trỏ tới MyDate2. VD swap như dvd1=dvd2 thì dvd1 sẽ trỏ tới MyDate2 chứ giá trị ô nhớ MyDate1 không đổi tức d1 bên ngoài k đổi. Nhưng nếu gán dvd1.setDay(20) tức đổi giá trị vùng nhớ MyDate1 sẽ ảnh hưởng d1 bên ngoài. Tương tự truyền mảng vào thì gán a[0]=1 là đang đổi giá trị ô nhớ đó nên ảnh hưởng ra ngoài
+Còn biến primitive int thì k có heap ở đây và copy giá trị khi truyền vào hàm nên k ảnh hưởng ra ngoài. Wrapper Class VD Integer là reference type nhưng k có hàm nào thay đổi giá trị bộ nhớ của nó mà chỉ refer đến vùng nhớ khác mỗi khi gán trong hàm nên k thay đổi ra bên ngoài nên luôn luôn là copy.
 
--> So sánh 2 biến:
+
+
+# So sánh 2 biến:
 Trong C++, việc so sánh 2 class cho nhau là k được trừ khi ta định nghĩa operator cho nó. Trong Java, việc cho a == b với a, b là 2 biến class thì nó sẽ tự động compare địa chỉ, nếu 2 biến trỏ cùng 1 địa chỉ thì mới bằng nhau. Nếu muốn so sánh giá trị ta phải viết lại operator or hàm riêng compare từng trường.
 Ta có thể hiểu là == và equals đều so sánh địa chỉ nhưng equals có thể đổi bằng override. Primitive nó k có new nên pool hằng số của nó luôn fix giá trị cho các biến nên đã cùng giá trị là cùng địa chỉ nên chẳng khác nào so sánh giá trị cả. Object Wrapper thì vẫn thế nhưng nó được override cái equals thành ss giá trị. Class bth thì đúng hệt mặc định.
 
---> Primitive: (int)
+-> Primitive: (int)
 == : ss giá trị
 
---> Object Wrapper: (Integer)
+-> Object Wrapper: (Integer)
 == : so sánh địa chỉ với pool lưu const, new thì pool sẽ lưu nhiều const chắc chắn khác nhau dù các ký tự giống
 equals object : so sánh giá trị
 
---> Biến class object bth: (Student)
+-> Biến class object bth: (Student)
 == : so sánh địa chỉ 2 object
 equals object custom thì mặc định là so sánh địa chỉ và ta có thể override cho nó so sánh gì cx đc.
 
@@ -115,17 +101,13 @@ string -> Object Wrapper class: Double a = Double.valueOf("1.2");
 
 
 
-# hashcode và equals
-Mọi object đều kế thừa từ class Object có 2 phương thức này. Khi cần override equals để so sánh theo giá trị chẳng hạn thì ta phải hiểu rất rõ 2 hàm này. Đặc biệt là khi làm vc với collection dựa trên bảng băm như HashSet và HashMap
+#***Hiểu về hashcode và equals
+Mọi object đều kế thừa từ class Object có 2 phương thức này. Khi cần so sánh 2 biến class thì phải override equals để so sánh theo giá trị. Đặc biệt là khi làm vc với collection dựa trên bảng băm như HashSet và HashMap. VD hàm contains dùng equals để so sánh
 
-VD hàm contains dùng equals để so sánh
-
-Thực tế các kiểu băm như HashTable, HashSet, HashMap nó dùng bảng băm lưu trữ các đối tượng theo nhóm. Trong 1 nhóm sẽ chỉ chứa các đối tượng có chung giá trị băm là hashCode() kiểu:
+Các kiểu băm như HashTable, HashSet, HashMap nó dùng bảng băm lưu trữ các đối tượng theo nhóm. Trong 1 nhóm sẽ chỉ chứa các đối tượng có chung giá trị băm là hashCode() kiểu:
 hashCode1 -> {A, B, C,..} 
-hashCode2 -> {E, F, G,..} => trong đó các đối tượng E, F, G,... là các class có hàm hashCode() trả ra cùng giá trị là "hashCode2" 
-=> Khi thêm đối tượng vào HashSet chẳng hạn thì java object đó có 1 hashCode được gán cho nó cung bởi JVM. Con số này để định vị nó trong bảng băm vì collection dựa trên bảng băm như HashSet, HashMap k duy trì thứ tự các phần tử. Chính vì nó định vị object trong bảng băm của bộ nhớ nên có thể coi nó trả ra số nguyên địa chỉ vùng nhớ mà Object đang được lưu
-
-hashCode là 32 signed integer value. Hashcode được quản lý bởi hash-based data structure như HashTable, HashSet. hashCode return randomly generated for mỗi instance và giá trị randomly generated đó có thể đổi khi program exec. Mặc định nó trả ra địa chỉ vùng nhớ, thực tế thì ta đổi sang cái khác được
+hashCode2 -> {E, F, G,..} => trong đó các đối tượng E, F, G,... là các giá trị của class có hàm hashCode() trả ra cùng giá trị là "hashCode2" 
+=> Khi thêm đối tượng vào HashSet chẳng hạn thì java object đó có 1 hashCode được gán cho nó cung bởi JVM. Nó là 32 signed integer value, return randomly generated for mỗi instance và giá trị randomly generated đó có thể đổi khi program exec. Mặc định có thể coi nó trả ra số nguyên địa chỉ vùng nhớ mà Object đang được lưu trong bảng băm.
 
 Khi override equals cũng nên override hashCode. Quy tắc là: 
 Nếu 2 đối tượng bằng nhau thì hashCode phải bằng nhau. Nếu 2 đối tượng k bằng nhau thì k có quy định cho hashCode của nó, và nếu 2 đối tượng có hashCode giống nhau thì cũng k có sự ràng buộc nào về sự bằng nhau của chúng => dễ nhớ vì giống quy tắc trong bảng băm đó, ví dụ 2 đối tượng khác mã băm chắc chắn k được bằng nhau, nếu cùng mã băm là cùng 1 nhóm nhưng chưa chắc đã là 1 được
@@ -136,24 +118,24 @@ VD: class Student có name, id, age. Class Test có 1 HashSet Student. Theo tín
 
 
 # Error handling try catch:
---> finally chỉ bị dừng khi thread dừng, dùng system.exit(), exception lại phát sinh trong finally block => Dùng close file, socket, connection và release resource
+-> finally chỉ bị dừng khi thread dừng, dùng system.exit().
 Java có 2 loại exception là Checked Exception và Unchecked Exception: Checked Exception là Exception vào compiletime; Unchecked Exception là vào Runtime và ta cần bắt cái thứ 2
 
---> Có thể dùng try catch, try catch finally, multicatch, nested try, try with resource, throw và throws
+-> Có thể dùng try catch, try catch finally, multicatch, nested try, try with resource, throw và throws
 try { } 
 catch (ExceptionType1 e1) { } 
 catch (ExceptionType2 e2) { }
 => ExceptionType1 phải là con của ExceptionType2 or 1 class equivalent nếu k thì hiển nhiên trái với logic
 
---> Exception delegation:
+-> Exception delegation:
 1 method có thể delegate exception cho caller của nó bằng cách: dùng throw bình thường nhưng k handle nó. Trong function definition thêm throws <tên class exception> vào.
-1 method có thể delegate nhiều hơn 1 exception. VD dùng throws ArithmeticException, NullPointerException ở ngay function definition
 1 method k có exception declaration ở đầu sẽ tự throw RuntimeException chung khi có lỗi vì exception này được delegated cho JVM
 ---> Khi kế thừa:
 Overriding method of child class sẽ k thể throw exception mới mà chỉ throw được tập hợp exception giống với các exception được throw từ parent class
 
 
 
+//!!!!!!!
 # Collection Framework trong java:
 Framework là 1 tập hợp các thư viện đóng gói để hỗ trợ phát triển ứng dụng dựa trên framework đó và nó cũng cung cấp các nguyên tắc cấu trúc của ứng dụng mà ta phải tuân theo. Vd Framework Spring của JS để lập trình web với Java. Để sử dụng phải tuân theo các quy chuẩn của nó.
 Collections khăc phục nhược điểm mảng. K cần khai báo trước số lượng phần tử fix cứng. Nó là 1 tập hợp các class lưu danh sách và có khả năng tự co dãn khi danh sách thay đổi
@@ -186,6 +168,7 @@ VD: tạo 1 HashSet kích thước ban đầu là 16 và hệ số tải là 0.7
 -> Comparable và Comparator là 2 interface để so sánh và sắp xếp vị trí 2 đối tượng của Collection:
 Comparable là interface và khi 1 class implements nó phải override hàm compareTo để custom vc so sánh 2 biến class đó theo trường gì tùy ý. Sau khi implements nó thì các hàm có sẵn như sort, PriorityQueue của java sẽ tự động dùng compareTo để so sánh
 Comparator là 1 class có sẵn của java.util, nó có 2 hàm compare(object1, object2) và equals(object). Class này giúp ta so sánh 1 số TH nhất thời khi cần truyền nó vào hàm. VD: Collection.sort(List, Comparator); thì class Comparator truyền vào phải implements hàm compare ở TH này chẳng hạn. K cần kế thừa hay implements gì hết
+
 
 
 # Thao tác với Date và Locale:
@@ -304,10 +287,6 @@ Interface chỉ được chứa public method, static, final attribute cũng đ�
 
 
 
-# Abstract class:
-
-
-
 # Static:
 Các hàm được gọi trực tiếp trong main phải có static nếu k có instance
 static được cấp phát bộ nhớ 1 lần ngay khi biên dịch luôn và ra đời trước đối tượng. Chỉ được hủy khi kết thúc CT. Chỉ dùng khi cần chia sẻ cái data đó cho toàn bộ hệ thống phần mềm
@@ -417,6 +396,15 @@ Trong React cũng tương tự nhưng file giao diện chính là controller lu�
 
 
 
+# Memory management:
+Memmory management của java được ẩn đi đối với dev. Dev k cần care về mem quản lý như nào hay phải free bộ nhớ hay k vì JVM tự làm hết.
+Heap lưu constant pool và new variable, thực tế nó lưu trên stack và reference pointer vào heap. Còn primitive var được lưu trực tiếp trên stack.
+GC quét qua JVM's list of objects định kỳ để lấy lại vùng nhớ nguồn resource của object nào mà k được referenced. Thông thường GC chạy khi mem low, nh lúc k thể đoán trước.
+Hàm finalize của object được run ngay sau khi gc chạy và dọn object đó. Request gc run soon bằng System.gc() => chỉ dùng overrdie hàm finalize trong TH đặc biệt
+Object sau khi bị xóa có thể được gán null tự động.
+
+
+
 # Other:
 -> Native keyword:
 Từ khóa native chỉ dùng cho method định nghĩa 1 hàm được triển khai bằng ngôn ngữ khác như C++. Nó có thể dùng để tăng hiệu suất hệ thông, giúp chương trình giao tiếp ở mức máy, bộ nhớ or sử dụng các mã nguồn có sẵn nhưng k đc viết bằng java. VD: public native int intMethod(int i);
@@ -454,5 +442,16 @@ Hỗ trợ các giao thức HTTP và HTTPS
 Hỗ trợ các ứng dụng web Java Servlet và JavaServer Pages (JSP)
 Hỗ trợ các phiên bản khác nhau của Java EE
 Hỗ trợ các công cụ quản lý và giám sát ứng dụng web
+
+-> Có thể refactor các file vào các package khác nhau, import dự án java từ file zip được
+Ta có thể export dự án của ta thành 1 thư viện đuôi file.jar để dùng trong 1 dự án khác. Ta có thể export project của ta thành 1 ứng dụng chạy bằng 1 file.jar bằng command line để chạy với: java -jar file.jar => với các thư viện ngoài khi sử dụng sẽ phải thêm VM argument vào cho ứng dụng để dùng các thư viện đó. Do đó ta nên export thư viện ra kèm file.jar và nhớ để thêm bin vào cùng cấp thư viện nếu k sẽ k chạy được.
+Export file jar => rightclick -> export Runnable Jar File => chọn dự án có file main và đặt tên .jar trong Eclipse
+
+Lỗ hổng bảo mật Log4J là lỗ hổng trong package Log4J chuyên dùng để log nó bị lỗ hổng ở chỗ nó lấy code của hacker và chạy, hacker chỉ cần chuẩn bị sẵn 1 url có code java chứa mã độc và gửi vào và log4j sẽ tự tìm đến url server chạy phần code hack đó. Những ứng dụng dùng package log4j or dùng các package mà bên trong package lại dùng log4j đều bị lỗi này. Để fix phải cập nhập máy chủ java lên phiên bản mới nhất. VD: các server minecraft viết bằng java bị hack bằng cách này
+
+Dùng java với MySQL thông qua Java JDBC Driver để thao tác Java với CSDL:
+Cần tải thêm NetBeans IDE về máy tính để làm môi trường code. Tải thư viện MySQL Connector/J để thao tác với MySQL trong Java.
+Netbeans là IDE mạnh của Java dùng cho ứng dụng web, di động, desktop hết. Nó cũng giống Eclipses hỗ trợ nhiều ngôn ngữ khác nx. Để cài NetBeans cũng phải có sẵn JDK. 
+=> bỏ. Chỉ cần biết có thể thao tác với Database SQL bằng Java thông qua driver, cũng như trong Qt ta thao tác với Microsoft SQL được ấy
 
 

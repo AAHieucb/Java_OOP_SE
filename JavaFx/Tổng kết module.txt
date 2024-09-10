@@ -1,5 +1,4 @@
 JavaFX:
-Tất cả các component khác ta học khi cần dùng. Bh chỉ học các thứ qtr cần thiết cho dự án.
 
 
 # Basic:
@@ -8,20 +7,12 @@ Stage bao Scene, trong scene có từng components. Stage bao scene thì k resiz
 
 implements interface Initializable cho controller để khi class view load xong thì thực hiện điều gì đầu tiên.
 
-JavaFx có nhiều hiệu ứng như css
-tạo tree view, list view các kiểu
-
-Tương tự javafx, các thư viện khác của java từ bên ngoài có thể thêm theo cách tương tự. Có thể thêm docs cho thư viện dùng
-
-Có thể import file vào dự án dùng
-
 -> Phân trang:
 Trong 1 package có 1 page, trong page có nhiều component khác của page đó là fxml, mỗi page có 1 controller, độc lập nhau => chia file tùy biến
 Dùng layout constraint tạo responsive nhưng chỉ chỉnh được vị trí, k chỉnh được kích thước tùy màn hình như nào như web
 Dùng bth cũng có tự động căn chỉnh kích thước. VD: StackPane
 Muốn có ảnh phải refresh lại riêng thư mục thêm ảnh
 Muốn căn giữa ở vài element, phải dùng HBox or VBox r chỉnh grow của nó để đẩy thẻ của mình ra
-
 
 -> Class chỉnh layout:
 VBox HBox AnchorPane BorderPane GridPane StackPane ...
@@ -62,8 +53,6 @@ Scene thì ta k thể dùng cách 1 vì scene k hiển thị ở trên view scen
 -> Trong GUI hiện đại đều có binding. Trong JavaFX thì mọi Property đều có thể binding
 VD dùng String và StringProperty thì cái thứ 2 có thể dùng như cái thứ nhất nhưng cung thêm chức năng là addListener và có thể 1 property có thể bind 1 property khác. Bên cạnh đó thì nó cũng trả ra 1 object có nhiều chức năng hơn là String thuần ban đầu
 
-Trong FXML vẫn có binding bth
-
 -> Custom component:
 Custom component giống như React nhưng tốt hơn vì k cần redux vẫn tương tác được.
 Tạo ra component fxml tùy ý -> nhét file đó vào 1 anchorPane là xong. Trong file đó có các thuộc tính mà ta có thể tùy chỉnh. Khi thao tác ta lại phải custom nó trong main
@@ -81,14 +70,7 @@ Cái controller đảm bảo ta thao tác gì với nó giao diện, cái Custom
 
 
 # Other:
-Maven là tool quản lý package, phiên bản, lib của java. Tạo 1 Maven Project, có thể convert qua lại với java project -> thêm các dependency vào pom -> save tự build -> code như bth trong src/main
+-> Maven là tool quản lý package, phiên bản, lib của java. Tạo 1 Maven Project, có thể convert qua lại với java project -> thêm các dependency vào pom -> save tự build -> code như bth trong src/main
 Vc dùng các thư viện mạnh có thể phải cài thêm nhiều thứ khác
 Phải convert dự án java về phiên bản đúng để tránh lỗi
-
-Tổng quan: 
-Dùng thư viện ngoài và các tool SceneBuilder Maven
-Cách code JavaFX cơ bản
-Multiscene app
-Custom component
-Binding
 

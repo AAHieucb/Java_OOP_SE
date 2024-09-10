@@ -1,0 +1,17 @@
+# Thread.sleep(0) và GC
+Phân tích code: int i = 0;
+while (i < 10000000) {
+  // business logic i++
+  if (i % 3000 == 0)
+    try {
+      Thread.sleep(0);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+}
+Khi chạy thì các task sẽ tranh nhau CPU, trong đó có task của garbage collector. GC của JVM tự dọn rác nhưng là low priority. Nếu k dùng Thread.sleep(0) thì CPU có thể sẽ luôn bận xử lý business logic mãi đến khi ra khỏi while mới dọn rác, nếu business logic ở đây dài thì bộ nhớ sẽ bị chiếm quá nhiều trong vòng while này.
+Thực tế các trình biên dịch như JVM luôn có safepoint ở cuối vòng loop hoặc khi call đến 1 hàm khác. Safepoint là điểm mà CPU có thể switch sang task khác, nếu chưa chạy đến điểm này thì CPU buộc phải xử lý tiếp task hiện tại. Tuy nhiên 1 số nền tảng lại tối ưu bằng cách chỉ hỗ trợ safe point cho vòng loop uncountable (loop vô tận hoặc index counter là kiểu long), còn loop index là int thì chạy 1 mạch luôn. Dẫn đến họ phải dùng Thread.sleep(0) để release CPU timeline 1 tẹo, tạo cơ hội cho GC chạy khi đã tốn quá nhiều mem
+=> Hiện tượng này xảy ra ở cả C# và Java
+
+
+

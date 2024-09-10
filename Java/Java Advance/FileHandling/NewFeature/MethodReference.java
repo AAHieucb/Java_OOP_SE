@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 // Interface
 
-@FunctionalInterface//là interface có đúng 1 function bên trong để lưu function gọi bằng tên function bên trong
+@FunctionalInterface
 interface MyInterface1{  
     Hello display(String say);  
 }  
@@ -31,12 +31,12 @@ public class MethodReference {
         System.out.println("call myMethod");
     }
     public static void main(String[] args) {
-        MyInterface1 ref = Hello::new;//cách mà method reference refer đến constructor 1 class. K khởi tạo mà chỉ gán
+        MyInterface1 ref = Hello::new; // Cách mà method reference refer đến constructor 1 class. K khởi tạo mà chỉ gán
         ref.display("Hello World!");
-        //tức là ref nó lưu constructor
+        // Tức là ref nó lưu constructor
 
         MethodReference obj = new MethodReference();
-        MyInterface ref2 = obj::myMethod;//nhanh hơn lamba or dùng luôn MethodReference::myMethod
+        MyInterface ref2 = obj::myMethod;// Nhanh hơn lamba or dùng luôn MethodReference::myMethod
         ref2.display();
 
         // Basic
@@ -47,9 +47,9 @@ public class MethodReference {
 
         // Thao tác với String
         String[] stringArray = { "Steve", "Rick", "Aditya", "Negan", "Lucy", "Sansa", "Jon"};
-        //lib Arrays cung các util thao tác với array
-        Arrays.sort(stringArray, String::compareToIgnoreCase);//ss thứ tự từ điển bỏ qua lower/uppercase
-        //sort List dùng Collections, còn sort array dùng Arrays, sort ArrayList dùng sort của chính nó có
+        // Lib Arrays cung các util thao tác với array
+        Arrays.sort(stringArray, String::compareToIgnoreCase); // SS thứ tự từ điển bỏ qua lower/uppercase
+        // Sort List dùng Collections, còn sort array dùng Arrays, sort ArrayList dùng sort của chính nó có
         for(String str: stringArray){
             System.out.print(str + "\t");
         }

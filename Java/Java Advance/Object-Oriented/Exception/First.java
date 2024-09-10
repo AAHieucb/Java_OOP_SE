@@ -18,16 +18,16 @@ public class First {
         try {
             int num1 = 0;
             int num2 = 62 / num1;
-            //ngoại lệ bắt thì nó k đi tiếp trong hàm try đâu mà đi ra ngoài tiếp luôn
+            // Ngoại lệ bắt thì nó k đi tiếp trong hàm try đâu mà đi ra ngoài tiếp luôn
             System.out.println("Ket thuc try block.");
         }
-        catch (ArithmeticException e) { //bắt ngoại lệ số học
+        catch (ArithmeticException e) { // Exception số học
             System.out.println("Loi: So bi chia không the là so 0");
         }
         catch(ArrayIndexOutOfBoundsException e){
             System.out.println("Canh bao: ngoai le ArrayIndexOutOfBoundsException");
         }
-        catch (Exception e) {//exception chung khi mà còn TH cái trên k bắt được
+        catch (Exception e) {// Exception chung khi mà còn TH cái trên k bắt được, phải nằm ở sau
             System.out.println("Loi: mot ngoai le da xay ra");
         }
         finally{
@@ -36,8 +36,7 @@ public class First {
 
         System.out.println(myMethod());
 
-        //chính vì finally block được thực hiện bất chấp try fail nên ta có thể lợi dụng để gọi hàm close các stream
-        //của java
+        // Chính vì finally block được thực hiện bất chấp try fail nên ta có thể lợi dụng để gọi hàm close các stream của java
         try{ 
             Scanner scanner = new Scanner(System.in);
             try{

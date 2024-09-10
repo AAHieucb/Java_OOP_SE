@@ -9,28 +9,24 @@ Class chỉ có 1 lý do để đổi, 1 class chỉ làm 1 nv. Cơ chế để 
 public interface Notification {
     void sendNotification();
 }
-
 public class EmailNotification implements Notification {
     @Override
     public void sendNotification() {
         // Send email notification
     }
 }
-
 public class SmsNotification implements Notification {
     @Override
     public void sendNotification() {
         // Send SMS notification
     }
 }
-
 public class PushNotification implements Notification {
     @Override
     public void sendNotification() {
         // Send push notification
     }
 }
-
 public class NotificationManager {
     private List<Notification> notifications;
 
@@ -61,7 +57,6 @@ public class NotificationManager {
         }
     }
 }
-
 public class NotificationPreferenceManager {
     public void updateNotificationPreferences(User user, NotificationType type, boolean enabled) {
         // update user notification preferences

@@ -4,12 +4,7 @@ Vấn đề: kiến trúc chuẩn để chuyển qua lại giữa các screen. S
 
 
 
-# Liquity Frontend
-Trong web như react thì việc chuyển màn hình có thể thực hiện ở bất cứ đâu nhờ cơ chế global hook, chả khác gì singleton.
-
-Nhưng ở cùng 1 page mà chuyển đổi qua lại ẩn hiện các component, họ dùng biến trạng thái và chuyển trạng thái rất mượt.
-Đầu tiên phủ từng page 1 cái provider lưu state view. Component page chỉ cần switch view là cái gì thì hiển thị cái gì. Bên trong Provider cung 1 hàm switchView. 
-Hàm switch view: Tạo 1 object ánh xạ (view hiện tại)[action] = (view mới) thì chuyển page nào chỉ cần dispatch action rồi bên trong tự đổi view thành view nào dựa vào cái object kia là được.
+# Trong web như react thì việc chuyển màn hình có thể thực hiện ở bất cứ đâu nhờ cơ chế global hook, chả khác gì singleton.
 
 
 
@@ -144,6 +139,9 @@ public static void main(String[] args) {
     vendingMachine.dispense();
 }
 => VD này thể hiện rõ ràng mỗi state có 1 class riêng và việc xử lý từng state hay chuyển đổi qua lại giữa các state được làm độc lập ở từng class state mà logic xử lý k nằm trong VendingMachine.
+
+-> VĐ là có nhiều state thì có hàm khác nhau nhưng cùng kế thừa 1 abstract class OrderState.
+Abstract class chỉ khai báo các hàm chung thôi, các hàm riêng ta vẫn dùng riêng và có gì thì cast sang để gọi các hàm riêng. Dùng thêm 1 biến type enum trong abstract class và gán ở các class impelement để biết loại nào mà cast tương ứng.
 
 
 
